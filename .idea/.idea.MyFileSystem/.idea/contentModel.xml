@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Lenovo L\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Lenovo L\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_MyFileSystem.-623043842.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Lenovo L\source\repos\MyFileSystem" t="IncludeFlat">
+      <e p="MyFileSystem" t="IncludeRecursive">
+        <e p="appsettings.Development.json" t="Include" />
+        <e p="appsettings.json" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Controllers" t="Include">
+          <e p="AccountController.cs" t="Include" />
+          <e p="AdminstrationController.cs" t="Include" />
+          <e p="BaseController.cs" t="Include" />
+          <e p="FilesController.cs" t="Include" />
+          <e p="FoldersController.cs" t="Include" />
+        </e>
+        <e p="Core" t="Include">
+          <e p="DTOs" t="Include">
+            <e p="Account" t="Include">
+              <e p="AssignRoleDto.cs" t="Include" />
+              <e p="CreateRoleDto.cs" t="Include" />
+              <e p="LoginDto.cs" t="Include" />
+              <e p="RegisterDto.cs" t="Include" />
+            </e>
+            <e p="FileManager" t="Include">
+              <e p="FileDtos" t="Include">
+                <e p="CreateFileDto.cs" t="Include" />
+                <e p="FileDto.cs" t="Include" />
+                <e p="UpdateFileDto.cs" t="Include" />
+              </e>
+              <e p="FolderDtos" t="Include">
+                <e p="CreateFolderDto.cs" t="Include" />
+                <e p="FolderDto.cs" t="Include" />
+                <e p="FolderParentDto.cs" t="Include" />
+                <e p="FoldersDto.cs" t="Include" />
+              </e>
+            </e>
+            <e p="PagedResultDto.cs" t="Include" />
+          </e>
+          <e p="Entities" t="Include">
+            <e p="ApplicationUser.cs" t="Include" />
+            <e p="File.cs" t="Include" />
+            <e p="Folder.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Migrations" t="Include">
+          <e p="20200901115601_InitialModel.cs" t="Include" />
+          <e p="20200901115601_InitialModel.Designer.cs" t="Include" />
+          <e p="20200901122205_InitialModel2.cs" t="Include" />
+          <e p="20200901122205_InitialModel2.Designer.cs" t="Include" />
+          <e p="20200923111817_login.cs" t="Include" />
+          <e p="20200923111817_login.Designer.cs" t="Include" />
+          <e p="FileSystemDbContextModelSnapshot.cs" t="Include" />
+        </e>
+        <e p="MyFileSystem.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="MyFileSystem.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Persistence" t="Include">
+          <e p="Contexts" t="Include">
+            <e p="FileSystemDbContext.cs" t="Include" />
+          </e>
+          <e p="Interfaces" t="Include">
+            <e p="IBaseRepository.cs" t="Include" />
+            <e p="IUnitOfWork.cs" t="Include" />
+          </e>
+          <e p="Repositories" t="Include">
+            <e p="BaseRepository.cs" t="Include" />
+            <e p="FileRepository.cs" t="Include" />
+            <e p="FoldersRepository.cs" t="Include" />
+            <e p="Interfaces" t="Include">
+              <e p="IFileRepository.cs" t="Include" />
+              <e p="IFoldersRepository.cs" t="Include" />
+            </e>
+          </e>
+          <e p="UnitOfWork" t="Include">
+            <e p="UnitOfWork.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="Services" t="Include">
+          <e p="Account" t="Include">
+            <e p="AdminstrationServices.cs" t="Include" />
+            <e p="UserService.cs" t="Include" />
+          </e>
+          <e p="FileManager" t="Include">
+            <e p="File" t="Include">
+              <e p="FileService.cs" t="Include" />
+            </e>
+            <e p="Folder" t="Include">
+              <e p="FolderService.cs" t="Include" />
+            </e>
+            <e p="OSFileManager.cs" t="Include" />
+          </e>
+          <e p="Interfaces" t="Include">
+            <e p="Account" t="Include">
+              <e p="IAdminstrationServices.cs" t="Include" />
+              <e p="IUserService.cs" t="Include" />
+            </e>
+            <e p="FileManager" t="Include">
+              <e p="File" t="Include">
+                <e p="IFileService.cs" t="Include" />
+              </e>
+              <e p="Folder" t="Include">
+                <e p="IFolderService.cs" t="Include" />
+              </e>
+              <e p="IFileManager.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Mapping" t="Include">
+            <e p="MappingProfile.cs" t="Include" />
+          </e>
+          <e p="Validators" t="Include">
+            <e p="FileValidator.cs" t="Include" />
+            <e p="FolderValidator.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Startup.cs" t="Include" />
+        <e p="wwwroot" t="Include">
+          <e p="222.bmp" t="Include" />
+          <e p="455666.bmp" t="Include" />
+          <e p="6658.bmp" t="Include" />
+          <e p="777.pub" t="Include" />
+          <e p="81881.png" t="Include" />
+          <e p="888.pub" t="Include" />
+          <e p="8gj.txt" t="Include" />
+          <e p="ezgif-4-d41f8d907e54.gif" t="Include" />
+          <e p="JJIOIUdhi.docx" t="Include" />
+          <e p="KOPP.docx" t="Include" />
+          <e p="llo.docx" t="Include" />
+          <e p="LLO.rar" t="Include" />
+          <e p="op.txt" t="Include" />
+          <e p="PPOOO.pub" t="Include" />
+          <e p="pppi.pptx" t="Include" />
+        </e>
+      </e>
+      <e p="MyFileSystem.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
