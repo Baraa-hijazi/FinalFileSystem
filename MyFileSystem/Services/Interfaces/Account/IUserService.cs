@@ -10,7 +10,6 @@ namespace MyFileSystem.Services.Interfaces.Account
         Task<object> Login(LoginDto loginDto);
         Task<object> Register(RegisterDto signUpDto);
         Task<object> Logout();
-        //Task<List<LoginDto>> GetAllUsers();
         Task<LoginDto> GetUser(string id);
         Task<object> AssignRoles(AssignRoleDto assignRoleDto);
     }

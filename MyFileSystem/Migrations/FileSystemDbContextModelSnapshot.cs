@@ -2,9 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MyFileSystem.Persistence;
+using MyFileSystem.Persistence.Contexts;
 
 namespace MyFileSystem.Migrations
 {

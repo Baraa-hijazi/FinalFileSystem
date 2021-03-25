@@ -1,12 +1,9 @@
 ﻿using MyFileSystem.Core.DTOs.Account;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace MyFileSystem.Services.Interfaces.Account
 {
-    public interface IAdminstrationServices
+    public interface IAdministrationServices
     {
         Task<object> CreateRole(CreateRoleDto createRoleDto);
         Task<object> Delete(string id);

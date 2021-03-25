@@ -5,7 +5,6 @@ using Microsoft.IdentityModel.Tokens;
 using MyFileSystem.Core.DTOs;
 using MyFileSystem.Core.DTOs.Account;
 using MyFileSystem.Core.Entities;
-using MyFileSystem.Persistence.UnitOfWork;
 using MyFileSystem.Services.Interfaces.Account;
 using System;
 using System.IdentityModel.Tokens.Jwt;
@@ -13,6 +12,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using MyFileSystem.Persistence.Interfaces;
 
 namespace MyFileSystem.Services.Account
 {
@@ -24,7 +24,10 @@ namespace MyFileSystem.Services.Account
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
 
-        public UserService(IMapper mapper, SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, IConfiguration config, IUnitOfWork unitOfWork)
+        public UserService(IMapper mapper, 
+            SignInManager<ApplicationUser> signInManager, 
+            UserManager<ApplicationUser> userManager, 
+            IConfiguration config, IUnitOfWork unitOfWork)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -35,10 +38,12 @@ namespace MyFileSystem.Services.Account
 
         public async Task<object> Login(LoginDto loginDto)
         {
-            var islogin = await _signInManager.PasswordSignInAsync(loginDto.UserName, loginDto.PasswordHash, false, false);
-            if (!islogin.Succeeded) throw new Exception("Invalid Username or Password! ");
+            var logged = await _signInManager
+                .PasswordSignInAsync(loginDto.UserName, loginDto.PasswordHash, false, false);
+          
+            if (!logged.Succeeded) throw new Exception("Invalid Username or Password! ");
            
-                var result = new { Token = await GenerateJSONWebTokenAsync(loginDto) };
+                var result = new { Token = await GenerateJsonWebTokenAsync(loginDto) };
                 return result;
         }
 
@@ -48,6 +53,7 @@ namespace MyFileSystem.Services.Account
 
             if (user == null || assignRoleDto.Role == null)
                 throw new Exception("User Not Found! ");
+           
             if (!(await _userManager.IsInRoleAsync(user, assignRoleDto.Role)))
             {
                 var result = await _userManager.AddToRoleAsync(user, assignRoleDto.Role);
@@ -59,7 +65,8 @@ namespace MyFileSystem.Services.Account
         public async Task<object> Logout()
         {
             await _signInManager.SignOutAsync();
-            return "Logged out Succefully";
+            
+            return "Logged out Successfully";
         }
 
         public async Task<object> Register(RegisterDto signUpDto)
@@ -68,7 +75,9 @@ namespace MyFileSystem.Services.Account
             {
                 var user = new ApplicationUser { UserName = signUpDto.UserName, Email = signUpDto.Email };
                 var result = await _userManager.CreateAsync(user, signUpDto.Password);
+              
                 if (!result.Succeeded) throw new Exception("Register not completed ");
+                
                 return result;
             }
             catch (Exception ex)
@@ -79,17 +88,12 @@ namespace MyFileSystem.Services.Account
 
         public async Task<PagedResultDto<LoginDto>> GetPagedUsers(int? pageIndex, int? pageSize)
         {
-            PagedResultDto<ApplicationUser> user = await _unitOfWork.AccountRepository.GetAllIncludedPagnation(U => U.UserName != null, pageIndex, pageSize);
-            PagedResultDto<LoginDto> result = _mapper.Map<PagedResultDto<ApplicationUser>, PagedResultDto<LoginDto>>(user);
+            var user = await _unitOfWork.AccountRepository
+                .GetAllIncludedPagination(U => U.UserName != null, pageIndex, pageSize);
+            var result = _mapper.Map<PagedResultDto<ApplicationUser>, PagedResultDto<LoginDto>>(user);
+            
             return result;
         }
-
-        //public async Task<List<LoginDto>> GetAllUsers()
-        //{
-        //    var user = await _userManager.Users.ToListAsync();
-        //    var result = _mapper.Map<IEnumerable<ApplicationUser>, List<LoginDto>>(user);
-        //    return result;
-        //}
 
         public async Task<LoginDto> GetUser(string id)
         {
@@ -100,7 +104,7 @@ namespace MyFileSystem.Services.Account
             return result;
         }
 
-        private async Task<string> GenerateJSONWebTokenAsync(LoginDto loginDto )
+        private async Task<string> GenerateJsonWebTokenAsync(LoginDto loginDto )
         {
 
             var user = await _userManager.FindByNameAsync(loginDto.UserName);
@@ -109,8 +113,6 @@ namespace MyFileSystem.Services.Account
             var userClaims = await _userManager.GetClaimsAsync(user);
             var userRoles = await _userManager.GetRolesAsync(user);
 
-            //var userClaims = await _userManager.GetClaimsAsync(user);
-            // var roles = await _userManager.GetRolesAsync(user);
            foreach(var role in userRoles)
             {
                 userClaims.Add(new Claim(ClaimTypes.Role, role));

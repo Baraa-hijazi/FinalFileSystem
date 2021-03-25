@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using MyFileSystem.Persistence.Contexts;
+using MyFileSystem.Persistence.Repositories.Interfaces;
 
 namespace MyFileSystem.Persistence.Repositories
 {

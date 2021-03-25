@@ -1,17 +1,18 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using MyFileSystem.Core.DTOs;
-using MyFileSystem.Persistence.UnitOfWork;
-using MyFileSystem.Services.Interfaces.File;
-using MyFileSystem.Services.Interfaces.Folder;
-using MyFileSystem.Validators;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using MyFileSystem.Core.DTOs;
+using MyFileSystem.Core.DTOs.FileManager.FolderDtos;
+using MyFileSystem.Persistence.Interfaces;
+using MyFileSystem.Services.Interfaces.FileManager;
+using MyFileSystem.Services.Interfaces.FileManager.Folder;
+using MyFileSystem.Services.Validators;
 
-namespace MyFileSystem.Services.Folder
+namespace MyFileSystem.Services.FileManager.Folder
 {
     public class FolderService : IFolderService
     {
@@ -28,29 +29,39 @@ namespace MyFileSystem.Services.Folder
 
         public async Task<CreateFolderDto> CreateFolders(CreateFolderDto cFolderDto)
         {
-            CreateFolderValidator createFolderValidator = new CreateFolderValidator();
-            if (!createFolderValidator.Validate(cFolderDto).IsValid) throw new Exception("Not Valid... ");
+            var createFolderValidator = new CreateFolderValidator();
+            if (!(await createFolderValidator.ValidateAsync(cFolderDto)).IsValid) throw new Exception("Not Valid... ");
+            
             var path = _fileManager.GetRootPath() + cFolderDto.FolderName;
+            
             if (cFolderDto.FolderParentId == null)
             {
                 _fileManager.CreateDirectory(path);
-                var folder = _mapper.Map<CreateFolderDto, Entities.Folder>(cFolderDto);
+               
+                var folder = _mapper.Map<CreateFolderDto, Core.Entities.Folder>(cFolderDto);
+                
                 folder.FolderPath = path;
+               
                 _unitOfWork.FoldersRepository.Add(folder);
                 await _unitOfWork.CompleteAsync();
-                var x = _mapper.Map<Entities.Folder, CreateFolderDto>(folder);
-                return x;
+               
+                var result = _mapper.Map<Core.Entities.Folder, CreateFolderDto>(folder);
+               
+                return result;
             }
             else 
             {
                 var pFolder = await _unitOfWork.FoldersRepository.GetById(cFolderDto.FolderParentId);
                 path = pFolder.FolderPath + "\\" + cFolderDto.FolderName; 
                 _fileManager.CreateDirectory(path);
-                var folder = _mapper.Map<CreateFolderDto, Entities.Folder>(cFolderDto);
+               
+                var folder = _mapper.Map<CreateFolderDto, Core.Entities.Folder>(cFolderDto);
                 folder.FolderPath = path;
+               
                 _unitOfWork.FoldersRepository.Add(folder);
                 await _unitOfWork.CompleteAsync();
-                return _mapper.Map<Entities.Folder, CreateFolderDto>(folder);
+                
+                return _mapper.Map<Core.Entities.Folder, CreateFolderDto>(folder);
             }
         }
 
@@ -58,22 +69,15 @@ namespace MyFileSystem.Services.Folder
         {
             var folder = (await _unitOfWork.FoldersRepository
                 .GetAllIncluded(f => f.FolderId == id, o => o.Files)).SingleOrDefault();
+           
             var folders = await _unitOfWork.FoldersRepository.GetAll(f => f.FolderParentId == id);
-            if (folder == null)
-                throw new Exception("Not Found... ");
-            var folderDto = _mapper.Map<Entities.Folder, FolderDto>(folder);
-            folderDto.Folders = _mapper.Map<List<Entities.Folder>, List<FolderDto>>(folders.ToList());
+            if (folder == null) throw new Exception("Not Found... ");
+           
+            var folderDto = _mapper.Map<Core.Entities.Folder, FolderDto>(folder);
+            folderDto.Folders = _mapper.Map<List<Core.Entities.Folder>, List<FolderDto>>(folders.ToList());
+           
             return folderDto;
         }
-
-        //public async Task<List<FolderParentDto>> GetFolders()
-        //{
-        //    var folder = await _unitOfWork.FoldersRepository.GetAllIncluded(f => f.FolderName != null, o => o.Files);
-        //    var folders = await _unitOfWork.FoldersRepository.GetAll();
-        //    if (folder == null)
-        //        throw new Exception("Not Found... ");
-        //    return _mapper.Map<List<Entities.Folder>, List<FolderParentDto>>(folders.ToList());
-        //}
 
         public async Task<string> UpdateFolders(int id, [FromForm] string path2)
         {
@@ -84,12 +88,15 @@ namespace MyFileSystem.Services.Folder
             {
                 if (!Directory.Exists(path2))
                 {
-                    Directory.Move(folder.FolderPath, folder.FolderPath + "\\" + path2);
+                    Directory.Move(folder.FolderPath, $"{folder.FolderPath}\\{path2}");
+                    
                     await _unitOfWork.CompleteAsync();
-                    _mapper.Map<Entities.Folder, CreateFolderDto>(folder);
+                    
+                    _mapper.Map<Core.Entities.Folder, CreateFolderDto>(folder);
+                    
                     return ("Directory was Moved... ");
                 }
-                else throw new Exception("Not Found... "); ;
+                else throw new Exception("Not Found... ");
             }
             catch (Exception e) { throw new Exception(e.Message); }
         }
@@ -99,17 +106,25 @@ namespace MyFileSystem.Services.Folder
             var folder = await _unitOfWork.FoldersRepository.GetById(id);
             if (folder == null)
                 throw new Exception("Not Found... ");
+           
             await DeleteTree(id);
+            
             _unitOfWork.FoldersRepository.Delete(folder);
+           
             var path = folder.FolderPath;
+           
             _fileManager.DeleteDirectory(path);
+            
             await _unitOfWork.CompleteAsync();
+           
             return ("Folder and it's contents were deleted... ");
         }
-        public async Task DeleteTree(int fId)
+
+        private async Task DeleteTree(int fId)
         {
             var folders = (await _unitOfWork.FoldersRepository.GetAllIncluded(f => f.FolderParentId == fId)).ToList();
             var firstLevelFiles = (await _unitOfWork.FileRepository.GetAllIncluded(fi => fi.FolderId == fId)).ToList();
+            
             if (firstLevelFiles.Count > 0)
             {  
                 await _unitOfWork.FileRepository.DeleteRange(firstLevelFiles); 
@@ -119,18 +134,22 @@ namespace MyFileSystem.Services.Folder
             {
                 await DeleteTree(folder.FolderId);
                 var files = (await _unitOfWork.FileRepository.GetAllIncluded(fi => fi.FolderId == fId)).ToList();
+                
                 if (files.Count > 0)
                 {
                     await  _unitOfWork.FileRepository.DeleteRange(files);
-                }
-               _unitOfWork.FoldersRepository.Delete(folder);
+                } 
+                _unitOfWork.FoldersRepository.Delete(folder);
             }
         }
 
         public async Task<PagedResultDto<FolderDto>> GetPagedFolders(int? pageIndex, int? pageSize)
         {
-            var folder = await _unitOfWork.FoldersRepository.GetAllIncludedPagnation(f => f.FolderName != null, pageIndex, pageSize);
-            var result = _mapper.Map<PagedResultDto<Entities.Folder>, PagedResultDto<FolderDto>>(folder);
+            var folder = await _unitOfWork.FoldersRepository
+                    .GetAllIncludedPagination(f => f.FolderName != null, pageIndex, pageSize);
+           
+            var result = _mapper.Map<PagedResultDto<Core.Entities.Folder>, PagedResultDto<FolderDto>>(folder);
+           
             return result;
         }
     }

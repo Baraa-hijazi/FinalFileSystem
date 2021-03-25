@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyFileSystem.Services.Account
 {
-    public class AdminstrationServices : IAdminstrationServices
+    public class AdminstrationServices : IAdministrationServices
     {
         private readonly RoleManager<IdentityRole> _roleManager;
 

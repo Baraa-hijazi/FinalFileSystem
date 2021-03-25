@@ -1,7 +1,7 @@
-﻿using MyFileSystem.Entities;
-using MyFileSystem.Persistence.Repositories;
+﻿using MyFileSystem.Core.Entities;
+using MyFileSystem.Persistence.Interfaces;
 
-namespace MyFileSystem.Persistence
+namespace MyFileSystem.Persistence.Repositories.Interfaces
 {
     public interface IFoldersRepository : IBaseRepository<Folder>
     {

@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
-using MyFileSystem.Entities;
-using MyFileSystem.Persistence.Repositories;
+using MyFileSystem.Core.Entities;
+using MyFileSystem.Persistence.Contexts;
+using MyFileSystem.Persistence.Repositories.Interfaces;
 
-namespace MyFileSystem.Persistence
+namespace MyFileSystem.Persistence.Repositories
 {
     public class FoldersRepository : BaseRepository<Folder> , IFoldersRepository
     {

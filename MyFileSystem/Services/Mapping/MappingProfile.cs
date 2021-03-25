@@ -1,11 +1,12 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using MyFileSystem.Core.DTOs;
 using MyFileSystem.Core.DTOs.Account;
+using MyFileSystem.Core.DTOs.FileManager.FileDtos;
+using MyFileSystem.Core.DTOs.FileManager.FolderDtos;
 using MyFileSystem.Core.Entities;
-using MyFileSystem.Entities;
-using System.Collections.Generic;
 
-namespace MyFileSystem.Mapping
+namespace MyFileSystem.Services.Mapping
 {
     public class MappingProfile : Profile
     {
@@ -15,7 +16,7 @@ namespace MyFileSystem.Mapping
             CreateMap<Folder, FoldersDto>().ReverseMap();
 
             CreateMap(typeof(PagedResultDto<>), typeof(PagedResultDto<>));
-            CreateMap<PagedResultDto<ApplicationUser>, PagedResultDto<LoginDto>>()/*.ForMember(x => x.Result, y => y.Ignore())*/;
+            CreateMap<PagedResultDto<ApplicationUser>, PagedResultDto<LoginDto>>();
 
             CreateMap<Folder, FolderDto>().ReverseMap()
                 .ForMember(f => f.FolderId, opt => opt.Ignore());
@@ -28,7 +29,7 @@ namespace MyFileSystem.Mapping
 
             CreateMap<Folder, CreateFolderDto>().ReverseMap()
                 .ForMember(f => f.FolderId, opt => opt.Ignore());
-        
+
             CreateMap<File, UpdateFileDto>().ReverseMap()
                 .ForMember(f => f.FileId, opt => opt.Ignore());
 

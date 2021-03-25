@@ -1,16 +1,16 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using MyFileSystem.Services.Interfaces.File;
-using System;
+﻿using System;
 using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using MyFileSystem.Services.Interfaces.FileManager;
 
-namespace MyFileSystem.Services.File
+namespace MyFileSystem.Services.FileManager
 {
-    public class OSFileManager : IFileManager
+    public class OsFileManager : IFileManager
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public OSFileManager( IWebHostEnvironment webHostEnvironment)
+        public OsFileManager( IWebHostEnvironment webHostEnvironment)
         {
             _webHostEnvironment = webHostEnvironment;
         }

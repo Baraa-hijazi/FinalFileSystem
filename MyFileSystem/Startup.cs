@@ -12,16 +12,15 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MyFileSystem.Core.Entities;
-using MyFileSystem.Persistence;
 using MyFileSystem.Persistence.UnitOfWork;
-using MyFileSystem.Services.Account;
-using MyFileSystem.Services.File;
-using MyFileSystem.Services.Interfaces.Account;
-using MyFileSystem.Services.Interfaces.File;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using MyFileSystem.Persistence.Contexts;
+using MyFileSystem.Persistence.Interfaces;
+using MyFileSystem.Services.FileManager;
+using MyFileSystem.Services.Interfaces.FileManager;
 
 namespace MyFileSystem
 {
@@ -42,7 +41,7 @@ namespace MyFileSystem
             services.AddDbContext<FileSystemDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
             services.AddAutoMapper(typeof(Startup));
             services.AddMvc().AddFluentValidation();
-            services.AddScoped<IFileManager, OSFileManager>();
+            services.AddScoped<IFileManager, OsFileManager>();
             
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
@@ -115,16 +114,12 @@ namespace MyFileSystem
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-           
             app.UseEndpoints(endpoints => { endpoints.MapControllers();});
             app.UseSwagger();
             app.UseSwaggerUI(c =>

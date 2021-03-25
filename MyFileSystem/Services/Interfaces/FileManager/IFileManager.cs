@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace MyFileSystem.Services.Interfaces.File
+namespace MyFileSystem.Services.Interfaces.FileManager
 {
     public interface IFileManager
     {

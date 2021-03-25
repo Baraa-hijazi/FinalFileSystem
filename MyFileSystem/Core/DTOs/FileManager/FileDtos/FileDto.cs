@@ -1,4 +1,4 @@
-﻿namespace MyFileSystem.Core.DTOs
+﻿namespace MyFileSystem.Core.DTOs.FileManager.FileDtos
 {
     public class FileDto 
     {

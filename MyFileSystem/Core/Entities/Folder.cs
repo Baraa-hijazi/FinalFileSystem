@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MyFileSystem.Entities
+namespace MyFileSystem.Core.Entities
 {
 
     public class Folder

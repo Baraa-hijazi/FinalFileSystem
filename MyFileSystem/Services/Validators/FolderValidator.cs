@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using FluentValidation;
-using MyFileSystem.Core.DTOs;
-using MyFileSystem.Entities;
+﻿using FluentValidation;
+using MyFileSystem.Core.DTOs.FileManager.FolderDtos;
 
-namespace MyFileSystem.Validators
+namespace MyFileSystem.Services.Validators
 {
     public class CreateFolderValidator : AbstractValidator<CreateFolderDto>
     {

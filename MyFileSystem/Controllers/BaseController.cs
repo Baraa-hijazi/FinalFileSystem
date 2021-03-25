@@ -13,11 +13,5 @@ namespace MyFileSystem.Controllers
         {
             return User.Claims.First(i => i.Type == "Username").Value;
         }
-
-        //[NonAction]
-        //protected string GetCurrentUserPassword()
-        //{
-        //    return User.Claims.First(i => i.Type == "Password").Value;
-        //}
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace MyFileSystem.Persistence.Repositories
+﻿namespace MyFileSystem.Persistence.Repositories.Interfaces
 {
     public interface IFileRepository 
     {

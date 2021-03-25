@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using MyFileSystem.Core.DTOs.FileManager.FileDtos;
 
-namespace MyFileSystem.Core.DTOs
+namespace MyFileSystem.Core.DTOs.FileManager.FolderDtos
 {
     public class FolderDto
     {

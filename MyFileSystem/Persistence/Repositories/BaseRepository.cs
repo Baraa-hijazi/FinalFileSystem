@@ -5,55 +5,54 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using MyFileSystem.Persistence.Contexts;
+using MyFileSystem.Persistence.Interfaces;
 
 namespace MyFileSystem.Persistence.Repositories
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
         private readonly FileSystemDbContext _context = null;
-        private readonly DbSet<T> table = null;
+        private readonly DbSet<T> _table = null;
      
         public BaseRepository(FileSystemDbContext context) 
         {
             _context = context;
-            table = context.Set<T>();
+            _table = context.Set<T>();
         }
 
-        public async Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>> predicate = null, string Includes = null)
+        public async Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>> predicate = null, string includes = null)
         {
-            if(predicate != null)
-            {
-            var query = table.Where(predicate);
-                if(Includes !=null)
-                {
-                    foreach (var str in Includes.Split(","))
-                        query = query.Include(str).AsQueryable();
-                }
-                return await query.ToListAsync();
-            }
-            return await table.ToListAsync();
-        }
-
-        public async Task<IEnumerable<T>> GetAllIncluded(Expression<Func<T, bool>> predicate = null, params Expression<Func<T, object>>[] Includes)
-        {
-            var query = table.Where(predicate);
-            foreach (var Include in Includes)
-            {
-                query = query.Include(Include);
-            }
+            if (predicate == null) return await _table.ToListAsync();
+            
+            var query = _table.Where(predicate);
+            
+            if (includes == null) return await query.ToListAsync();
+            
+            foreach (var str in includes.Split(",")) 
+                query = query.Include(str).AsQueryable();
+            
             return await query.ToListAsync();
         }
 
-        public async Task<PagedResultDto<T>> GetAllIncludedPagnation(Expression<Func<T, bool>> predicate = null, int? pageIndex = 1, int? pageSize = 10, params Expression<Func<T, object>>[] Includes)
+        public async Task<IEnumerable<T>> GetAllIncluded(Expression<Func<T, bool>> predicate = null, params Expression<Func<T, object>>[] includes)
+        {
+            var query = _table.Where(predicate);
+            foreach (var Include in includes)
+                query = query.Include(Include);
+            
+            return await query.ToListAsync();
+        }
+
+        public async Task<PagedResultDto<T>> GetAllIncludedPagination(Expression<Func<T, bool>> predicate = null, int? pageIndex = 1, int? pageSize = 10, params Expression<Func<T, object>>[] includes)
         {
             if (pageIndex <= 0) pageIndex = 1;
             if (pageSize <= 0) pageSize = 10;
 
-            var query = table.Where(predicate);
-            foreach (var Include in Includes)
-            {
+            var query = _table.Where(predicate);
+            foreach (var Include in includes)
                 query = query.Include(Include);
-            }
+            
 
             return new PagedResultDto<T>
             {
@@ -64,29 +63,29 @@ namespace MyFileSystem.Persistence.Repositories
 
         public async Task<T> GetById(object id)
         { 
-            return await table.FindAsync(id);
+            return await _table.FindAsync(id);
         }
 
         public void Add(T obj)
         { 
-            table.Add(obj); 
+            _table.Add(obj); 
         }
 
         public void Update(T obj)
         {
-            table.Attach(obj);
+            _table.Attach(obj);
             _context.Entry(obj).State = EntityState.Modified;
         }
 
         public T Delete(T existing)
         {
-            table.Remove(existing);
+            _table.Remove(existing);
             return existing;
         }
         
-        public Task DeleteRange(List<T> entites)
+        public Task DeleteRange(IEnumerable<T> entities)
         {
-            table.RemoveRange(entites);
+            _table.RemoveRange(entities);
             return Task.CompletedTask;
         }
     } 

@@ -1,13 +1,14 @@
 ﻿using MyFileSystem.Core.Entities;
-using MyFileSystem.Entities;
 using MyFileSystem.Persistence.Repositories;
 using System.Threading.Tasks;
+using MyFileSystem.Persistence.Contexts;
+using MyFileSystem.Persistence.Interfaces;
 
 namespace MyFileSystem.Persistence.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
-    { 
-        public  readonly FileSystemDbContext _context;
+    {
+        private readonly FileSystemDbContext _context;
         public IBaseRepository<File> FileRepository { get; }
         public IBaseRepository<Folder> FoldersRepository { get; }
         public IBaseRepository<ApplicationUser> AccountRepository { get; }

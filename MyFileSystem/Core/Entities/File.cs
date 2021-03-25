@@ -1,4 +1,4 @@
-﻿namespace MyFileSystem.Entities
+﻿namespace MyFileSystem.Core.Entities
 {
     public class File
     {

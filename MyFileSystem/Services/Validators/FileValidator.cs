@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Http;
 
-namespace MyFileSystem.Validators
+namespace MyFileSystem.Services.Validators
 {
     public class CreateFileValidator : AbstractValidator<IFormFile>
     {

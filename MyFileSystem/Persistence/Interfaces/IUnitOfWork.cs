@@ -1,9 +1,7 @@
-﻿using MyFileSystem.Core.Entities;
-using MyFileSystem.Entities;
-using MyFileSystem.Persistence.Repositories;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using MyFileSystem.Core.Entities;
 
-namespace MyFileSystem.Persistence.UnitOfWork
+namespace MyFileSystem.Persistence.Interfaces
 {
     public interface IUnitOfWork
     {

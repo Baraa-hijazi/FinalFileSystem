@@ -1,19 +1,19 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.IO;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using MyFileSystem.Core.Entities;
-using MyFileSystem.Entities;
-using System.IO;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using System;
+using File = MyFileSystem.Core.Entities.File;
 
-namespace MyFileSystem.Persistence
+namespace MyFileSystem.Persistence.Contexts
 {
     public class FileSystemDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Folder> Folders { get; set; }
-        public DbSet<Entities.File> Files { get; set; }
+        public DbSet<File> Files { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public FileSystemDbContext() { } 
 
