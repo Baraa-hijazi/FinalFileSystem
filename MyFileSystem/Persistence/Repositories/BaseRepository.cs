@@ -12,10 +12,10 @@ namespace MyFileSystem.Persistence.Repositories
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        private readonly FileSystemDbContext _context = null;
-        private readonly DbSet<T> _table = null;
-     
-        public BaseRepository(FileSystemDbContext context) 
+        private readonly FileSystemDbContext _context;
+        private readonly DbSet<T> _table;
+
+        public BaseRepository(FileSystemDbContext context)
         {
             _context = context;
             _table = context.Set<T>();
@@ -24,35 +24,36 @@ namespace MyFileSystem.Persistence.Repositories
         public async Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>> predicate = null, string includes = null)
         {
             if (predicate == null) return await _table.ToListAsync();
-            
+
             var query = _table.Where(predicate);
-            
+
             if (includes == null) return await query.ToListAsync();
-            
-            foreach (var str in includes.Split(",")) 
+
+            foreach (var str in includes.Split(","))
                 query = query.Include(str).AsQueryable();
-            
+
             return await query.ToListAsync();
         }
 
-        public async Task<IEnumerable<T>> GetAllIncluded(Expression<Func<T, bool>> predicate = null, params Expression<Func<T, object>>[] includes)
+        public async Task<IEnumerable<T>> GetAllIncluded(Expression<Func<T, bool>> predicate = null,
+            params Expression<Func<T, object>>[] includes)
         {
             var query = _table.Where(predicate);
-            foreach (var Include in includes)
-                query = query.Include(Include);
-            
+            foreach (var include in includes)
+                query = query.Include(include);
+
             return await query.ToListAsync();
         }
 
-        public async Task<PagedResultDto<T>> GetAllIncludedPagination(Expression<Func<T, bool>> predicate = null, int? pageIndex = 1, int? pageSize = 10, params Expression<Func<T, object>>[] includes)
+        public async Task<PagedResultDto<T>> GetAllIncludedPagination(Expression<Func<T, bool>> predicate = null,
+            int? pageIndex = 1, int? pageSize = 10, params Expression<Func<T, object>>[] includes)
         {
             if (pageIndex <= 0) pageIndex = 1;
             if (pageSize <= 0) pageSize = 10;
 
             var query = _table.Where(predicate);
-            foreach (var Include in includes)
-                query = query.Include(Include);
-            
+            foreach (var include in includes)
+                query = query.Include(include);
 
             return new PagedResultDto<T>
             {
@@ -61,15 +62,9 @@ namespace MyFileSystem.Persistence.Repositories
             };
         }
 
-        public async Task<T> GetById(object id)
-        { 
-            return await _table.FindAsync(id);
-        }
+        public async Task<T> GetById(object id) => await _table.FindAsync(id);
 
-        public void Add(T obj)
-        { 
-            _table.Add(obj); 
-        }
+        public void Add(T obj) => _table.Add(obj);
 
         public void Update(T obj)
         {
@@ -82,11 +77,11 @@ namespace MyFileSystem.Persistence.Repositories
             _table.Remove(existing);
             return existing;
         }
-        
+
         public Task DeleteRange(IEnumerable<T> entities)
         {
             _table.RemoveRange(entities);
             return Task.CompletedTask;
         }
-    } 
+    }
 }

@@ -7,7 +7,7 @@ using IActionResult = Microsoft.AspNetCore.Mvc.IActionResult;
 
 namespace MyFileSystem.Controllers
 {
-    [Route("api/[Controller]")]
+    [Route("API/[Controller]")]
     [ApiController]
     public class AccountController : BaseController
     {

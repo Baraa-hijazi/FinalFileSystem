@@ -6,7 +6,7 @@ using IActionResult = Microsoft.AspNetCore.Mvc.IActionResult;
 
 namespace MyFileSystem.Controllers
 {
-    [Route("api/[Controller]")]
+    [Route("API/[Controller]")]
     [ApiController]
     public class FilesController : BaseController
     {
@@ -17,24 +17,24 @@ namespace MyFileSystem.Controllers
             _fileService = fileService;
         }
 
-        [HttpPost("Create")]
+        [HttpPost("UploadFile")]
         public async Task<IActionResult> UploadFile([FromForm] CreateFileDto createFileDto) => 
             Ok(await _fileService.UploadFile(createFileDto));
 
-        [HttpGet("Get-All-Paged")]
+        [HttpGet("GetFiles")]
         public async Task<IActionResult> GetFiles(int? pageIndex, int? pageSize) => 
             Ok(await _fileService.GetFiles(pageIndex, pageSize));
 
-        [HttpGet("Get-By-Id")]
+        [HttpGet("Get-GetFile-Id")]
         public async Task<IActionResult> GetFile(int id) => 
             Ok(await _fileService.GetFile(id));
 
-        [HttpPut("Edit")]
+        [HttpPut("UpdateFile")]
         public async Task<IActionResult> UpdateFiles(int id, [FromBody] UpdateFileDto updateFileDto) => 
-            Ok(await _fileService.UpdateFiles(id, updateFileDto));
+            Ok(await _fileService.UpdateFile(id, updateFileDto));
 
-        [HttpDelete("Delete")]
+        [HttpDelete("DeleteFile")]
         public async Task<IActionResult> DeleteFiles(int id) => 
-            Ok(await _fileService.DeleteFiles(id));
+            Ok(await _fileService.DeleteFile(id));
     }
 }

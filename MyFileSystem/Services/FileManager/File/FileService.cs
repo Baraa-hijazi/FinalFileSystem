@@ -30,7 +30,7 @@ namespace MyFileSystem.Services.FileManager.File
         {
             var files = await _unitOfWork.FileRepository
                 .GetAllIncludedPagination(f => f.FileName != null, pageIndex, pageSize);
-            
+
             return _mapper.Map<PagedResultDto<Core.Entities.File>, PagedResultDto<FileDto>>(files);
         }
 
@@ -38,27 +38,35 @@ namespace MyFileSystem.Services.FileManager.File
         {
             var file = await _unitOfWork.FileRepository.GetById(id);
             if (file == null) throw new Exception("Not Found... ");
-            
+
             return _mapper.Map<Core.Entities.File, FileDto>(file);
         }
 
         public async Task<FileDto> UploadFile([FromForm] CreateFileDto createFileDto)
         {
             var createFileValidator = new CreateFileValidator();
-            if (!(await createFileValidator.ValidateAsync(createFileDto.PhFile)).IsValid) throw new Exception("Name Not Valid... ");
+            if (!(await createFileValidator.ValidateAsync(createFileDto.PhFile)).IsValid)
+                throw new Exception("Name Not Valid... ");
 
             //--------------- Upload Physical File ------------------//
             string path;
             if (createFileDto.FolderId > 0)
             {
-                var rootFolder = (await _unitOfWork.FoldersRepository.GetAllIncluded(f => f.FolderId == createFileDto.FolderId)).SingleOrDefault();
-                if (rootFolder == null) { throw new Exception("Folder not found"); }
+                var rootFolder =
+                    (await _unitOfWork.FoldersRepository.GetAllIncluded(f => f.FolderId == createFileDto.FolderId))
+                    .SingleOrDefault();
+                if (rootFolder == null)
+                {
+                    throw new Exception("Folder not found");
+                }
+
                 path = $"{rootFolder.FolderPath}\\{createFileDto.PhFile.FileName}";
             }
             else
             {
                 path = _fileManager.GetRootPath() + createFileDto.PhFile.FileName;
             }
+
             _fileManager.UploadFile(createFileDto.PhFile, path);
 
             //----------------------- Save to Db --------------------//
@@ -73,37 +81,37 @@ namespace MyFileSystem.Services.FileManager.File
 
             _unitOfWork.FileRepository.Add(entityFile);
             await _unitOfWork.CompleteAsync();
-            
+
             return _mapper.Map<Core.Entities.File, FileDto>(entityFile);
         }
 
-        public async Task<string> UpdateFiles(int id, [FromBody] UpdateFileDto updateFileDto)
+        public async Task<string> UpdateFile(int id, [FromBody] UpdateFileDto updateFileDto)
         {
             var file = await _unitOfWork.FileRepository.GetById(id);
             if (file == null) throw new Exception("Not Found... ");
-            
+
             file = _mapper.Map(updateFileDto, file);
-           
+
             await _unitOfWork.CompleteAsync();
-           
+
             _mapper.Map<Core.Entities.File, UpdateFileDto>(file);
-           
-            return ("File was updated... ");
+
+            return "File was updated... ";
         }
 
-        public async Task<string> DeleteFiles(int id)
+        public async Task<string> DeleteFile(int id)
         {
             var file = await _unitOfWork.FileRepository.GetById(id);
             if (file == null) throw new Exception("Not Found... ");
 
             var path = file.FilePath;
-            
+
             _fileManager.DeleteFile(path);
-            
+
             _unitOfWork.FileRepository.Delete(file);
             await _unitOfWork.CompleteAsync();
 
-            return ("File was deleted... ");
+            return "File was deleted... ";
         }
     }
 }

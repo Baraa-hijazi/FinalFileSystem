@@ -24,9 +24,9 @@ namespace MyFileSystem.Services.Account
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
 
-        public UserService(IMapper mapper, 
-            SignInManager<ApplicationUser> signInManager, 
-            UserManager<ApplicationUser> userManager, 
+        public UserService(IMapper mapper,
+            SignInManager<ApplicationUser> signInManager,
+            UserManager<ApplicationUser> userManager,
             IConfiguration config, IUnitOfWork unitOfWork)
         {
             _signInManager = signInManager;
@@ -40,11 +40,10 @@ namespace MyFileSystem.Services.Account
         {
             var logged = await _signInManager
                 .PasswordSignInAsync(loginDto.UserName, loginDto.PasswordHash, false, false);
-          
+
             if (!logged.Succeeded) throw new Exception("Invalid Username or Password! ");
-           
-                var result = new { Token = await GenerateJsonWebTokenAsync(loginDto) };
-                return result;
+
+            return new { Token = await GenerateJsonWebTokenAsync(loginDto) };
         }
 
         public async Task<object> AssignRoles(AssignRoleDto assignRoleDto)
@@ -53,19 +52,17 @@ namespace MyFileSystem.Services.Account
 
             if (user == null || assignRoleDto.Role == null)
                 throw new Exception("User Not Found! ");
-           
-            if (!(await _userManager.IsInRoleAsync(user, assignRoleDto.Role)))
-            {
-                var result = await _userManager.AddToRoleAsync(user, assignRoleDto.Role);
-                return result;
-            }
-            else throw new Exception("Role Already Assigned! ");
+
+            if (await _userManager.IsInRoleAsync(user, assignRoleDto.Role))
+                throw new Exception("Role Already Assigned! ");
+
+            return await _userManager.AddToRoleAsync(user, assignRoleDto.Role);
         }
 
         public async Task<object> Logout()
         {
             await _signInManager.SignOutAsync();
-            
+
             return "Logged out Successfully";
         }
 
@@ -75,9 +72,9 @@ namespace MyFileSystem.Services.Account
             {
                 var user = new ApplicationUser { UserName = signUpDto.UserName, Email = signUpDto.Email };
                 var result = await _userManager.CreateAsync(user, signUpDto.Password);
-              
+
                 if (!result.Succeeded) throw new Exception("Register not completed ");
-                
+
                 return result;
             }
             catch (Exception ex)
@@ -90,35 +87,37 @@ namespace MyFileSystem.Services.Account
         {
             var user = await _unitOfWork.AccountRepository
                 .GetAllIncludedPagination(U => U.UserName != null, pageIndex, pageSize);
-            var result = _mapper.Map<PagedResultDto<ApplicationUser>, PagedResultDto<LoginDto>>(user);
-            
-            return result;
+
+            return _mapper.Map<PagedResultDto<ApplicationUser>, PagedResultDto<LoginDto>>(user);
         }
 
         public async Task<LoginDto> GetUser(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
-            if (user == null)
-                throw new Exception("User Not Found! ");
-            var result = _mapper.Map<ApplicationUser, LoginDto>(user);
-            return result;
+
+            if (user == null) throw new Exception("User Not Found! ");
+
+            return _mapper.Map<ApplicationUser, LoginDto>(user);
         }
 
-        private async Task<string> GenerateJsonWebTokenAsync(LoginDto loginDto )
+        private async Task<string> GenerateJsonWebTokenAsync(LoginDto loginDto)
         {
-
             var user = await _userManager.FindByNameAsync(loginDto.UserName);
-            var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_config["Jwt:SecurityKey"])), SecurityAlgorithms.HmacSha256);
+
+            var signingCredentials =
+                new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_config["Jwt:SecurityKey"])),
+                    SecurityAlgorithms.HmacSha256);
 
             var userClaims = await _userManager.GetClaimsAsync(user);
             var userRoles = await _userManager.GetRolesAsync(user);
 
-           foreach(var role in userRoles)
+            foreach (var role in userRoles)
             {
                 userClaims.Add(new Claim(ClaimTypes.Role, role));
             }
-         
-            var claims = new[] {
+
+            var claims = new[]
+            {
                 new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
                 new Claim(type: "Username", user.UserName),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),

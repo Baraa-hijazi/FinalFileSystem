@@ -9,7 +9,7 @@ namespace MyFileSystem.Services.Interfaces.FileManager.File
         Task<PagedResultDto<FileDto>> GetFiles(int? pageIndex, int? pageSize);
         Task<FileDto> GetFile(int id);
         Task<FileDto> UploadFile(CreateFileDto createFileDto);
-        Task<string> UpdateFiles(int id, UpdateFileDto createFileDto);
-        Task<string> DeleteFiles(int id);
+        Task<string> UpdateFile(int id, UpdateFileDto createFileDto);
+        Task<string> DeleteFile(int id);
     }
 }

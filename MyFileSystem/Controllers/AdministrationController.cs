@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MyFileSystem.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("API/[controller]")]
     [ApiController]
     public class AdministrationController : ControllerBase
     {
@@ -17,12 +17,10 @@ namespace MyFileSystem.Controllers
         }
 
         [HttpGet("Get-All")]
-        public IActionResult Get() => 
-            Ok(_administrationService.Get());
+        public IActionResult Get() => Ok(_administrationService.Get());
 
         [HttpGet("Get-By-Id")]
-        public async Task<IActionResult> Get(string id) => 
-            Ok(await _administrationService.Get(id));
+        public async Task<IActionResult> Get(string id) => Ok(await _administrationService.Get(id));
 
         [HttpPost("Create-Role")]
         public async Task<IActionResult> CreateRole([FromBody] CreateRoleDto createRoleDto) => 
