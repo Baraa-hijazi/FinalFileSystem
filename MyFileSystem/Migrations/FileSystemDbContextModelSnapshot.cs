@@ -2,6 +2,8 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyFileSystem.Persistence.Contexts;
 
 namespace MyFileSystem.Migrations
@@ -46,8 +48,8 @@ namespace MyFileSystem.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "36a3df67-dcd8-48ab-9879-e6a083e9125a",
-                            ConcurrencyStamp = "91bad459-587e-42be-b565-ade05756ad90",
+                            Id = "071184cf-f62a-4d44-865d-cad3c9e4c012",
+                            ConcurrencyStamp = "a1eb71c1-6c56-462e-84f2-8df7724b27c9",
                             Name = "SuperAdmin",
                             NormalizedName = "SUPERADMIN"
                         });
@@ -140,8 +142,8 @@ namespace MyFileSystem.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "c534eebe-2228-4a94-8bb4-1120e91c9525",
-                            RoleId = "36a3df67-dcd8-48ab-9879-e6a083e9125a"
+                            UserId = "714f66b6-b71d-4f6c-8f1f-2319b8021d98",
+                            RoleId = "071184cf-f62a-4d44-865d-cad3c9e4c012"
                         });
                 });
 
@@ -231,15 +233,15 @@ namespace MyFileSystem.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c534eebe-2228-4a94-8bb4-1120e91c9525",
+                            Id = "714f66b6-b71d-4f6c-8f1f-2319b8021d98",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "86278092-15a0-476f-9d5e-39ca03ce0089",
+                            ConcurrencyStamp = "ddd2e0af-215f-4061-9adc-31d521509329",
                             Email = "developer@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "DEVELOPER@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAENCsodwIwjWZOHrsXrezIKsDLO73FStmA++l3pvmqEtRWyOzwUvW0yahedcmBMTD7g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPnu64JUgCmNg1LoqqXsmOYwKoNea5VekpabAZCgyPePnY39IUyQRAZb4VAM79IYcQ==",
                             PhoneNumber = "+962788000000000",
                             PhoneNumberConfirmed = true,
                             SecurityStamp = "",
@@ -248,7 +250,7 @@ namespace MyFileSystem.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MyFileSystem.Entities.File", b =>
+            modelBuilder.Entity("MyFileSystem.Core.Entities.File", b =>
                 {
                     b.Property<int>("FileId")
                         .ValueGeneratedOnAdd()
@@ -277,7 +279,7 @@ namespace MyFileSystem.Migrations
                     b.ToTable("Files");
                 });
 
-            modelBuilder.Entity("MyFileSystem.Entities.Folder", b =>
+            modelBuilder.Entity("MyFileSystem.Core.Entities.Folder", b =>
                 {
                     b.Property<int>("FolderId")
                         .ValueGeneratedOnAdd()
@@ -351,25 +353,25 @@ namespace MyFileSystem.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MyFileSystem.Entities.File", b =>
+            modelBuilder.Entity("MyFileSystem.Core.Entities.File", b =>
                 {
-                    b.HasOne("MyFileSystem.Entities.Folder", "Folder")
+                    b.HasOne("MyFileSystem.Core.Entities.Folder", "Folder")
                         .WithMany("Files")
                         .HasForeignKey("FolderId");
 
                     b.Navigation("Folder");
                 });
 
-            modelBuilder.Entity("MyFileSystem.Entities.Folder", b =>
+            modelBuilder.Entity("MyFileSystem.Core.Entities.Folder", b =>
                 {
-                    b.HasOne("MyFileSystem.Entities.Folder", "FolderParent")
+                    b.HasOne("MyFileSystem.Core.Entities.Folder", "FolderParent")
                         .WithMany()
                         .HasForeignKey("FolderParentId");
 
                     b.Navigation("FolderParent");
                 });
 
-            modelBuilder.Entity("MyFileSystem.Entities.Folder", b =>
+            modelBuilder.Entity("MyFileSystem.Core.Entities.Folder", b =>
                 {
                     b.Navigation("Files");
                 });

@@ -52,7 +52,7 @@ namespace MyFileSystem.Services.FileManager.Folder
             {
                 var pFolder = await _unitOfWork.FoldersRepository.GetById(cFolderDto.FolderParentId);
                 
-                path = pFolder.FolderPath + "\\" + cFolderDto.FolderName;
+                path = $"{pFolder.FolderPath}\\{cFolderDto.FolderName}";
                 
                 _fileManager.CreateDirectory(path);
 
@@ -124,27 +124,25 @@ namespace MyFileSystem.Services.FileManager.Folder
 
             await _unitOfWork.CompleteAsync();
 
-            return ("Folder and it's contents were deleted... ");
+            return "Folder and it's contents were deleted... ";
         }
 
         private async Task DeleteTree(int fId)
         {
+            var firstLevelFiles = (await _unitOfWork.FileRepository.GetAllIncluded(fi =>
+                fi.FolderId == fId)).ToList();
+            
+            if (firstLevelFiles.Count > 0) await _unitOfWork.FileRepository.DeleteRange(firstLevelFiles);
+
             var folders = (await _unitOfWork.FoldersRepository.GetAllIncluded(f => 
                 f.FolderParentId == fId)).ToList();
-            
-            var firstLevelFiles = (await _unitOfWork.FileRepository.GetAllIncluded(fi => 
-                fi.FolderId == fId)).ToList();
-
-            if (firstLevelFiles.Count > 0)
-            {
-                await _unitOfWork.FileRepository.DeleteRange(firstLevelFiles);
-            }
 
             foreach (var folder in folders)
             {
                 await DeleteTree(folder.FolderId);
                 
-                var files = (await _unitOfWork.FileRepository.GetAllIncluded(fi => fi.FolderId == fId)).ToList();
+                var files = (await _unitOfWork.FileRepository.GetAllIncluded(fi =>
+                    fi.FolderId == folder.FolderId)).ToList();
 
                 if (files.Count > 0) await _unitOfWork.FileRepository.DeleteRange(files);
 

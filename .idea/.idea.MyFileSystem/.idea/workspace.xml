@@ -1,54 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b5bd3797-e5f1-491e-8e0c-34de64ae2cf7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MyFileSystem/.idea/contentModel.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MyFileSystem/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyFileSystem/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MyFileSystem/.idea/modules.xml" beforeDir="false" />
+    <list default="true" id="b5bd3797-e5f1-491e-8e0c-34de64ae2cf7" name="Default Changelist" comment="Improvements">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MyFileSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyFileSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MyFileSystem/riderModule.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Controllers/AccountController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Controllers/AccountController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Controllers/AdministrationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Controllers/AdministrationController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Controllers/FilesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Controllers/FilesController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Controllers/FoldersController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Controllers/FoldersController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Persistence/Interfaces/IBaseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Persistence/Interfaces/IBaseRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Persistence/Interfaces/IUnitOfWork.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Persistence/Interfaces/IUnitOfWork.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Persistence/Repositories/BaseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Persistence/Repositories/BaseRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Persistence/Repositories/FileRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Persistence/Repositories/FileRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Persistence/Repositories/FoldersRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Persistence/Repositories/FoldersRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Persistence/Repositories/Interfaces/IFileRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Persistence/Repositories/Interfaces/IFileRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Persistence/UnitOfWork/UnitOfWork.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Persistence/UnitOfWork/UnitOfWork.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Properties/launchSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Services/Account/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Services/Account/UserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Services/FileManager/File/FileService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Services/FileManager/File/FileService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyFileSystem/Migrations/FileSystemDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Migrations/FileSystemDbContextModelSnapshot.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyFileSystem/Services/FileManager/Folder/FolderService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Services/FileManager/Folder/FolderService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Services/FileManager/OSFileManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Services/FileManager/OSFileManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Services/Interfaces/FileManager/File/IFileService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Services/Interfaces/FileManager/File/IFileService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Services/Interfaces/FileManager/Folder/IFolderService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Services/Interfaces/FileManager/Folder/IFolderService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Services/Validators/FileValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Services/Validators/FileValidator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Services/Validators/FolderValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Services/Validators/FolderValidator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Startup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/bin/Debug/netcoreapp3.1/MyFileSystem.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/bin/Debug/netcoreapp3.1/MyFileSystem.deps.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyFileSystem/bin/Debug/netcoreapp3.1/MyFileSystem.dll" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/bin/Debug/netcoreapp3.1/MyFileSystem.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/bin/Debug/netcoreapp3.1/MyFileSystem.exe" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/bin/Debug/netcoreapp3.1/MyFileSystem.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyFileSystem/bin/Debug/netcoreapp3.1/MyFileSystem.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/bin/Debug/netcoreapp3.1/MyFileSystem.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/bin/Debug/netcoreapp3.1/MyFileSystem.runtimeconfig.dev.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/bin/Debug/netcoreapp3.1/MyFileSystem.runtimeconfig.dev.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/bin/Debug/netcoreapp3.1/MyFileSystem.runtimeconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/bin/Debug/netcoreapp3.1/MyFileSystem.runtimeconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.MvcApplicationPartsAssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.MvcApplicationPartsAssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.assets.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.csproj.FileListAbsolute.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.csprojAssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.dll" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.genruntimeconfig.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/apphost.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/MyFileSystem.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/MyFileSystem.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/MyFileSystem.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/MyFileSystem.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/project.packagespec.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,6 +31,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2890D443-894D-4617-A506-F713FE2332E4/a3/2b502432/IWebHostEnvironment.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.MvcApplicationPartsAssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1FEA6AED-CED6-4FE7-B12F-051891E69638/D/IFormFile.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9E6336B0-B5D2-46D5-9CE1-0A71924623E6/1F/Directory.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -118,9 +81,12 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.3498452" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Launch Settings Profile.MyFileSystem">
@@ -173,5 +139,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Improvements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improvements" />
   </component>
 </project>
