@@ -15,13 +15,17 @@ namespace MyFileSystem.Persistence.Contexts
         public DbSet<Folder> Folders { get; set; }
         public DbSet<File> Files { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
-        public FileSystemDbContext() { } 
+
+        public FileSystemDbContext()
+        {
+        }
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder) { }
 
-        public FileSystemDbContext(DbContextOptions<FileSystemDbContext> Options) : base(Options)
-        { 
-            var config = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build(); 
+        public FileSystemDbContext(DbContextOptions<FileSystemDbContext> options) : base(options)
+        {
+            var config = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json").Build();
         }
 
         public class Fix : IDesignTimeDbContextFactory<FileSystemDbContext>
@@ -47,7 +51,7 @@ namespace MyFileSystem.Persistence.Contexts
             var ROLE_ID = Guid.NewGuid().ToString();
 
             builder.Entity<IdentityRole>().HasData(new IdentityRole
-            { Id = ROLE_ID, Name = "SuperAdmin", NormalizedName = "SuperAdmin".ToUpper() });
+                { Id = ROLE_ID, Name = "SuperAdmin", NormalizedName = "SuperAdmin".ToUpper() });
 
             builder.Entity<ApplicationUser>().HasData(new ApplicationUser
             {
