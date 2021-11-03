@@ -83,13 +83,9 @@ namespace MyFileSystem.Services.Account
             }
         }
 
-        public async Task<PagedResultDto<LoginDto>> GetPagedUsers(int? pageIndex, int? pageSize)
-        {
-            var user = await _unitOfWork.AccountRepository
-                .GetAllIncludedPagination(U => U.UserName != null, pageIndex, pageSize);
-
-            return _mapper.Map<PagedResultDto<ApplicationUser>, PagedResultDto<LoginDto>>(user);
-        }
+        public async Task<PagedResultDto<LoginDto>> GetPagedUsers(int? pageIndex, int? pageSize) =>
+            _mapper.Map<PagedResultDto<LoginDto>>(await _unitOfWork.AccountRepository
+                .GetAllIncludedPagination(u => u.UserName != null, pageIndex, pageSize));
 
         public async Task<LoginDto> GetUser(string id)
         {
@@ -104,9 +100,9 @@ namespace MyFileSystem.Services.Account
         {
             var user = await _userManager.FindByNameAsync(loginDto.UserName);
 
-            var signingCredentials =
-                new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_config["Jwt:SecurityKey"])),
-                    SecurityAlgorithms.HmacSha256);
+            var signingCredentials = new SigningCredentials(
+                new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_config["Jwt:SecurityKey"])),
+                SecurityAlgorithms.HmacSha256);
 
             var userClaims = await _userManager.GetClaimsAsync(user);
             var userRoles = await _userManager.GetRolesAsync(user);

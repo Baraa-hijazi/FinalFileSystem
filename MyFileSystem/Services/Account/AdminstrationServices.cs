@@ -6,59 +6,47 @@ using System.Threading.Tasks;
 
 namespace MyFileSystem.Services.Account
 {
-    public class AdminstrationServices : IAdministrationServices
+    public class AdministrationServices : IAdministrationServices
     {
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AdminstrationServices(RoleManager<IdentityRole> roleManager)
+        public AdministrationServices(RoleManager<IdentityRole> roleManager)
         {
             _roleManager = roleManager;
         }
 
-        public object Get()
-        {
-            var Roles = _roleManager.Roles;
-            return Roles;
-        }
+        public object Get() => _roleManager.Roles;
 
-        public async Task<object> Get(string id)
-        {
-            var role = await _roleManager.FindByIdAsync(id);
-            if (role == null)
-                throw new Exception("Role Doesn't Exist! ");
-            return role;
-        }
+        public async Task<object> Get(string id) => await _roleManager.FindByIdAsync(id);
 
         public async Task<object> CreateRole(CreateRoleDto createRoleDto)
         {
-            if (createRoleDto.RoleName != null)
+            var identityRole = new IdentityRole
             {
-                IdentityRole identityRole = new IdentityRole
-                {
-                    Name = createRoleDto.RoleName
-                };
-                var Result = await _roleManager.CreateAsync(identityRole);
-                return Result;
-            }
-            else throw new Exception("Creating Role Failed! ");
+                Name = createRoleDto.RoleName
+            };
+
+            if (createRoleDto.RoleName != null) return await _roleManager.CreateAsync(identityRole);
+
+            throw new Exception("Creating Role Failed! ");
         }
 
         public async Task<object> Put(string id, CreateRoleDto createRoleDto)
         {
-            var Role = await _roleManager.FindByIdAsync(id);
-            if (Role == null)
-                throw new Exception("Role Doesn't Exist! ");
+            var role = await _roleManager.FindByIdAsync(id);
 
-            Role.Name = createRoleDto.RoleName;
-            var result = await _roleManager.UpdateAsync(Role);
-            return result;
+            if (role == null) throw new Exception("Role Doesn't Exist! ");
+
+            role.Name = createRoleDto.RoleName;
+
+            return await _roleManager.UpdateAsync(role);
         }
 
         public async Task<object> Delete(string id)
         {
             var role = await _roleManager.FindByIdAsync(id);
-            var result = await _roleManager.DeleteAsync(role);
-            return result;
+            
+            return await _roleManager.DeleteAsync(role);
         }
     }
 }

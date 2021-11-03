@@ -2,16 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b5bd3797-e5f1-491e-8e0c-34de64ae2cf7" name="Default Changelist" comment="Improvements">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MyFileSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyFileSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Migrations/FileSystemDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Migrations/FileSystemDbContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Services/FileManager/Folder/FolderService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Services/FileManager/Folder/FolderService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/bin/Debug/netcoreapp3.1/MyFileSystem.dll" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/bin/Debug/netcoreapp3.1/MyFileSystem.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/bin/Debug/netcoreapp3.1/MyFileSystem.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/bin/Debug/netcoreapp3.1/MyFileSystem.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.csprojAssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.dll" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyFileSystem/Persistence/Repositories/FileRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyFileSystem/Persistence/Repositories/FoldersRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyFileSystem/Persistence/Repositories/Interfaces/IFileRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyFileSystem/Persistence/Repositories/Interfaces/IFoldersRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyFileSystem/Services/Account/AdminstrationServices.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Services/Account/AdminstrationServices.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyFileSystem/Services/Account/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Services/Account/UserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyFileSystem/Services/FileManager/File/FileService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Services/FileManager/File/FileService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +30,8 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2890D443-894D-4617-A506-F713FE2332E4/a3/2b502432/IWebHostEnvironment.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.MvcApplicationPartsAssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1FEA6AED-CED6-4FE7-B12F-051891E69638/D/IFormFile.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8c515d1167744292ae1e0213e7791f0829d78/13/RoleManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8c515d1167744292ae1e0213e7791f0829d78/30/IRoleStore.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9E6336B0-B5D2-46D5-9CE1-0A71924623E6/1F/Directory.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">

@@ -26,21 +26,12 @@ namespace MyFileSystem.Services.FileManager.File
             _mapper = mapper;
         }
 
-        public async Task<PagedResultDto<FileDto>> GetFiles(int? pageIndex, int? pageSize)
-        {
-            var files = await _unitOfWork.FileRepository
-                .GetAllIncludedPagination(f => f.FileName != null, pageIndex, pageSize);
+        public async Task<PagedResultDto<FileDto>> GetFiles(int? pageIndex, int? pageSize) =>
+            _mapper.Map<PagedResultDto<FileDto>>(await _unitOfWork.FileRepository
+                .GetAllIncludedPagination(f => f.FileName != null, pageIndex, pageSize));
 
-            return _mapper.Map<PagedResultDto<Core.Entities.File>, PagedResultDto<FileDto>>(files);
-        }
-
-        public async Task<FileDto> GetFile(int id)
-        {
-            var file = await _unitOfWork.FileRepository.GetById(id);
-            if (file == null) throw new Exception("Not Found... ");
-
-            return _mapper.Map<Core.Entities.File, FileDto>(file);
-        }
+        public async Task<FileDto> GetFile(int id) =>
+            _mapper.Map<FileDto>(await _unitOfWork.FileRepository.GetById(id));
 
         public async Task<FileDto> UploadFile([FromForm] CreateFileDto createFileDto)
         {
