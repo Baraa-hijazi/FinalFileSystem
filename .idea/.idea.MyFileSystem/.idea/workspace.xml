@@ -2,13 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b5bd3797-e5f1-491e-8e0c-34de64ae2cf7" name="Default Changelist" comment="Improvements">
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Persistence/Repositories/FileRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Persistence/Repositories/FoldersRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Persistence/Repositories/Interfaces/IFileRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Persistence/Repositories/Interfaces/IFoldersRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Services/Account/AdminstrationServices.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Services/Account/AdminstrationServices.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Services/Account/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Services/Account/UserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyFileSystem/Services/FileManager/File/FileService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/Services/FileManager/File/FileService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.run/MyFileSystem_Dockerfile.run.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyFileSystem/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyFileSystem/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MyFileSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyFileSystem/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyFileSystem/MyFileSystem.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/MyFileSystem.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/Debug/netcoreapp3.1/MyFileSystem.csprojAssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/MyFileSystem.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/MyFileSystem.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/MyFileSystem.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/MyFileSystem.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyFileSystem/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/MyFileSystem/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +94,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.MyFileSystem">
+  <component name="RunManager" selected=".NET Launch Settings Profile.MyFileSystem: IIS Express">
     <configuration name="MyFileSystem" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/MyFileSystem/MyFileSystem.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />

@@ -118,7 +118,6 @@ C:\Users\User\Desktop\personal\Personal Projects\Fs\FinalFileSystem\MyFileSystem
 C:\Users\User\Desktop\personal\Personal Projects\Fs\FinalFileSystem\MyFileSystem\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.SpaServices.dll
 C:\Users\User\Desktop\personal\Personal Projects\Fs\FinalFileSystem\MyFileSystem\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.SpaServices.Extensions.dll
 C:\Users\User\Desktop\personal\Personal Projects\Fs\FinalFileSystem\MyFileSystem\bin\Debug\netcoreapp3.1\Microsoft.Data.SqlClient.dll
-C:\Users\User\Desktop\personal\Personal Projects\Fs\FinalFileSystem\MyFileSystem\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
 C:\Users\User\Desktop\personal\Personal Projects\Fs\FinalFileSystem\MyFileSystem\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
 C:\Users\User\Desktop\personal\Personal Projects\Fs\FinalFileSystem\MyFileSystem\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Users\User\Desktop\personal\Personal Projects\Fs\FinalFileSystem\MyFileSystem\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
@@ -190,3 +189,4 @@ C:\Users\User\Desktop\personal\Personal Projects\Fs\FinalFileSystem\MyFileSystem
 C:\Users\User\Desktop\personal\Personal Projects\Fs\FinalFileSystem\MyFileSystem\obj\Debug\netcoreapp3.1\MyFileSystem.dll
 C:\Users\User\Desktop\personal\Personal Projects\Fs\FinalFileSystem\MyFileSystem\obj\Debug\netcoreapp3.1\MyFileSystem.pdb
 C:\Users\User\Desktop\personal\Personal Projects\Fs\FinalFileSystem\MyFileSystem\obj\Debug\netcoreapp3.1\MyFileSystem.genruntimeconfig.cache
+C:\Users\User\Desktop\personal\Personal Projects\Fs\FinalFileSystem\MyFileSystem\bin\Debug\netcoreapp3.1\System.Text.Json.dll
